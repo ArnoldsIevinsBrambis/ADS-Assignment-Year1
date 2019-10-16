@@ -92,8 +92,8 @@ def testq3():
     assert good_expression("1*2+3+4")
     assert good_expression("1+(2+3)*(4+5)")
     print ("all tests passed")
-#####################################################																	#Above code is provided as part of the assignment.
-def find_brackets(aape):																								#Secondary function - removes brackets and replaces them with P for valid brackets and R for invalid brackets.
+#####################################################			#Above code is provided as part of the assignment.
+def find_brackets(aape):										#Secondary function - removes brackets and replaces them with P for valid brackets and R for invalid brackets.
 	aape = aape
 	global s
 	global sapes
@@ -108,7 +108,7 @@ def find_brackets(aape):																								#Secondary function - removes br
 	times = []
 	listcalledstack = []
 	occurrences = lambda s, lst: (i for i,e in enumerate(lst) if e == s)
-	while "(" in aape:															#While open brackets symbol is in the input list, replaces brackets with P or R respectively.
+	while "(" in aape:											#While open brackets symbol is in the input list, replaces brackets with P or R respectively.
 		brackets = list(occurrences("(", aape))
 		for i in aape:
 			if i in "(+":
@@ -135,7 +135,7 @@ def find_brackets(aape):																								#Secondary function - removes br
 					aape[t] = "R"
 					del aape[t+1:o+1]
 					break
-	while ")" in aape:															#While close brackets symbol is in the input list, replaces brackets with P or R respectively.
+	while ")" in aape:											#While close brackets symbol is in the input list, replaces brackets with P or R respectively.
 		for i in aape:
 			if i in "P+*":
 				if i == "P":
@@ -155,7 +155,7 @@ def find_brackets(aape):																								#Secondary function - removes br
 					break
 	return aape
 
-def good_expression(sape):														#Main function - determines whether the provided expression is valid.
+def good_expression(sape):										#Main function - determines whether the provided expression is valid.
 	global sapes
 	sapes = sape
 	li = [str(i) for i in str(sape)]
@@ -164,13 +164,13 @@ def good_expression(sape):														#Main function - determines whether the 
 	print(seek)
 	verdict = False
 
-	if "R" in seek:																#If the find_brackets function has found redundant brackets, return false.
+	if "R" in seek:												#If the find_brackets function has found redundant brackets, return false.
 		verdict = False
 		return verdict
 	if "P" in seek:
 		occurrences = lambda s, lst: (i for i,e in enumerate(lst) if e == s)
 		g = list(occurrences("P", seek))
-		for i in g:																#If there is no times simbol to the left or right of a valid set of brackets(one that holds addition) in the input, return false.
+		for i in g:												#If there is no times simbol to the left or right of a valid set of brackets(one that holds addition) in the input, return false.
 			if i != 0:
 				left = i-1
 				right = i+1
@@ -185,11 +185,11 @@ def good_expression(sape):														#Main function - determines whether the 
 						if seek[right] == "+":
 							verdict = False
 							return verdict
-		if "*" not in seek:														#If there was a set of brackets in the input, but no multiplication, return false.
+		if "*" not in seek:										#If there was a set of brackets in the input, but no multiplication, return false.
 			verdict = False
 			return verdict
 		
-	if "(" not in li:															#If there were no brackets in the input, return true.
+	if "(" not in li:											#If there were no brackets in the input, return true.
 		if ")" not in li:
 			verdict = True
 			return verdict
@@ -200,7 +200,7 @@ def good_expression(sape):														#Main function - determines whether the 
 			verdict = match(str1)
 	return verdict
 	
-def match(string):																#Function for matching pairs of brackets.
+def match(string):												#Function for matching pairs of brackets.
     left, right, pairs = "({[", ")}]", ["()", "{}", "[]"]
     global s
     s = Stack()
